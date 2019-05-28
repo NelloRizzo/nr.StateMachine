@@ -21,7 +21,7 @@ namespace nr.StateMachine
         /// <summary>
         /// List of transitions that came from this state to another.
         /// </summary>
-        ICollection<IWorkflowTransition<D>> Transitions { get; set; }
+        ICollection<ITransition<D>> Transitions { get; set; }
         /// <summary>
         /// Management of an event in the state.
         /// </summary>

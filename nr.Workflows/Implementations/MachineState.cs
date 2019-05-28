@@ -6,42 +6,40 @@ using System.Text;
 namespace nr.StateMachine
 {
     /// <summary>
-    /// Definizione di uno stato del workflow.
+    /// Base implementation for a state.
     /// </summary>
-    /// <typeparam name="D">Dati gestiti.</typeparam>
-    public class WorkflowState<D> : IState<D>
+    /// <typeparam name="D">Type of handled data.</typeparam>
+    public class MachineState<D> : IState<D>
     {
         /// <summary>
-        /// Dati gestiti.
+        /// Handled data.
         /// </summary>
         public D Data { get; set; }
         /// <summary>
-        /// Transizioni di stato.
+        /// Transitions in the state.
         /// </summary>
-        public ICollection<IWorkflowTransition<D>> Transitions { get; set; }
+        public ICollection<ITransition<D>> Transitions { get; set; }
         /// <summary>
-        /// Nome dello stato.
+        /// State's name.
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// Costruttore.
+        /// Default constructor.
         /// </summary>
-        public WorkflowState()
+        public MachineState()
         {
-            Transitions = new List<IWorkflowTransition<D>>();
+            Transitions = new List<ITransition<D>>();
         }
         /// <summary>
-        /// Gestisce un evento che scateni una transizione.
+        /// Handle an event.
         /// </summary>
-        /// <param name="e">Evento da gestire.</param>
-        /// <returns>Restituisce il nuovo stato dopo la gestione dell'evento.</returns>
+        /// <param name="e">Event to handle.</param>
+        /// <returns>Returns the new state of the machine.</returns>
         public IState<D> ReceiveEvent(IMachineEvent e)
         {
             var transition = Transitions.FirstOrDefault(t => t.Event.Equals(e) && (t.Guard?.Invoke(Data, e) ?? true));
             if (transition == null) return null;
             transition.Data = Data;
-            // TODO: Gestione della guardia spostata nel filtro della lambda expression... Controllare se corretto.
-            //if (transition.Guard != null && !transition.Guard(Data, e)) return null;
             transition.Action?.Invoke(Data, e);
             return transition.To;
         }

@@ -5,41 +5,42 @@ using System.Text;
 namespace nr.StateMachine
 {
     /// <summary>
-    /// Una transizione di stato nel workflow.
+    /// A state transition.
     /// </summary>
-    /// <typeparam name="D">Tipo di dato delle informazioni gestite nel workflow.</typeparam>
-    public class WorkflowTransition<D> : IWorkflowTransition<D>
+    /// <typeparam name="D">Type of the handled data.</typeparam>
+    public class Transition<D> : ITransition<D>
     {
         /// <summary>
-        /// Stato attuale dell'informazione soggetta a workflow.
+        /// Current state of handled data.
         /// </summary>
         public D Data { get; set; }
         /// <summary>
-        /// Stato iniziale della transizione.
+        /// Start state.
         /// </summary>
         public IState<D> From { get; set; }
         /// <summary>
-        /// Stato finale della transizione.
+        /// End state.
         /// </summary>
         public IState<D> To { get; set; }
         /// <summary>
-        /// Azione da eseguire durante la transizione.
+        /// Action to perform transition.
         /// </summary>
         public Action<D, IMachineEvent> Action { get; set; }
         /// <summary>
-        /// Guardia che determina se attivare la transizione.
+        /// Guard to limit transition.
         /// </summary>
         public Func<D, IMachineEvent, bool> Guard { get; set; }
         /// <summary>
-        /// Evento che scatena la transizione.
+        /// Event that fire this transition.
         /// </summary>
         public IMachineEvent Event { get; set; }
         /// <summary>
-        /// Transizione di default.
+        /// Default transition.
         /// </summary>
-        public static IWorkflowTransition<D> Default
+        /// <remarks>This transition is fired at start of the machine.</remarks>
+        public static ITransition<D> Default
         {
-            get => new WorkflowTransition<D>() { From = null, Event = WorkflowEvent.Start };
+            get => new Transition<D>() { From = null, Event = MachineEvent.Start };
         }
     }
 }

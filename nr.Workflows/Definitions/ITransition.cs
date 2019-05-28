@@ -8,7 +8,7 @@ namespace nr.StateMachine
     /// A state's transition.
     /// </summary>
     /// <typeparam name="D">Type of the handled data.</typeparam>
-    public interface IWorkflowTransition<D>
+    public interface ITransition<D>
     {
         /// <summary>
         /// Current state.
