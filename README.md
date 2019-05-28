@@ -18,6 +18,4 @@ This project is licensed under the LPGL 3 license (https://www.gnu.org/licenses/
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Based on theory of State Machine Diagram.
