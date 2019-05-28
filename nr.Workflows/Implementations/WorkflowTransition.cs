@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace nr.Workflows
+namespace nr.StateMachine
 {
     /// <summary>
     /// Una transizione di stato nel workflow.
@@ -17,23 +17,23 @@ namespace nr.Workflows
         /// <summary>
         /// Stato iniziale della transizione.
         /// </summary>
-        public IWorkflowState<D> From { get; set; }
+        public IState<D> From { get; set; }
         /// <summary>
         /// Stato finale della transizione.
         /// </summary>
-        public IWorkflowState<D> To { get; set; }
+        public IState<D> To { get; set; }
         /// <summary>
         /// Azione da eseguire durante la transizione.
         /// </summary>
-        public Action<D, IWorkflowEvent> Action { get; set; }
+        public Action<D, IMachineEvent> Action { get; set; }
         /// <summary>
         /// Guardia che determina se attivare la transizione.
         /// </summary>
-        public Func<D, IWorkflowEvent, bool> Guard { get; set; }
+        public Func<D, IMachineEvent, bool> Guard { get; set; }
         /// <summary>
         /// Evento che scatena la transizione.
         /// </summary>
-        public IWorkflowEvent Event { get; set; }
+        public IMachineEvent Event { get; set; }
         /// <summary>
         /// Transizione di default.
         /// </summary>

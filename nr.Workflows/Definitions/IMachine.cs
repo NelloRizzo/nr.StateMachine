@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace nr.Workflows
+namespace nr.StateMachine
 {
     /// <summary>
-    /// Definizione di un workflow.
+    /// State machine definition.
     /// </summary>
-    /// <typeparam name="D">Tipo di dato gestito nel workflow.</typeparam>
-    public interface IWorkflow<D>
+    /// <typeparam name="D">Type of the handled state.</typeparam>
+    public interface IMachine<D>
     {
         /// <summary>
-        /// Dato gestito.
+        /// Handled data.
         /// </summary>
         D Data { get; set; }
         /// <summary>
         /// Stato corrente.
         /// </summary>
-        IWorkflowState<D> CurrentState { get; set; }
+        IState<D> CurrentState { get; set; }
         /// <summary>
         /// Genera un evento sullo stato corrente e passa ad un nuovo stato.
         /// </summary>
         /// <param name="e">Evento da generare.</param>
-        void BroadcastEvent(IWorkflowEvent e);
+        void BroadcastEvent(IMachineEvent e);
     }
 }

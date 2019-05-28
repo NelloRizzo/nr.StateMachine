@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace nr.Workflows
+namespace nr.StateMachine
 {
     /// <summary>
     /// Definizione di uno stato del workflow.
     /// </summary>
     /// <typeparam name="D">Dati gestiti.</typeparam>
-    public class WorkflowState<D> : IWorkflowState<D>
+    public class WorkflowState<D> : IState<D>
     {
         /// <summary>
         /// Dati gestiti.
@@ -35,7 +35,7 @@ namespace nr.Workflows
         /// </summary>
         /// <param name="e">Evento da gestire.</param>
         /// <returns>Restituisce il nuovo stato dopo la gestione dell'evento.</returns>
-        public IWorkflowState<D> ReceiveEvent(IWorkflowEvent e)
+        public IState<D> ReceiveEvent(IMachineEvent e)
         {
             var transition = Transitions.FirstOrDefault(t => t.Event.Equals(e) && (t.Guard?.Invoke(Data, e) ?? true));
             if (transition == null) return null;

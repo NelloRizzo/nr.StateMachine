@@ -50,29 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\nr.DietDiary\nr.Logger\nr.Logger.csproj">
-      <Project>{0A30F7FC-F012-4E8C-BDB5-23B17000D226}</Project>
-      <Name>nr.Logger</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\nr.Extensions\nr.Extensions.csproj">
-      <Project>{fe5a830d-6d74-4e92-823a-3fababb0fb8f}</Project>
-      <Name>nr.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\nr.PAServices.BusinessLayer\nr.PAServices.BusinessLayer.csproj">
-      <Project>{CAD5C4A5-CE3D-47BD-8E87-9CBD135F973B}</Project>
-      <Name>nr.PAServices.BusinessLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\nr.PAServices.BusinessModel\nr.PAServices.BusinessModel.csproj">
-      <Project>{2DF58426-E2F5-41C9-B991-8135892D67EB}</Project>
-      <Name>nr.PAServices.BusinessModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\nr.Persistence\nr.Persistence.csproj">
-      <Project>{C6B7ACC8-19CC-4DCD-A7C7-85CFCDC3D80A}</Project>
-      <Name>nr.Persistence</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\nr.Workflows\nr.Workflows.csproj">
-      <Project>{9452a5c6-2d1f-4cbb-85d5-b94de4c5fdd5}</Project>
-      <Name>nr.Workflows</Name>
+    <ProjectReference Include="..\nr.Workflows\nr.StateMachine.csproj">
+      <Project>{DD95C6C0-8D6D-435B-97C2-27D8F66D5A93}</Project>
+      <Name>nr.StateMachine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

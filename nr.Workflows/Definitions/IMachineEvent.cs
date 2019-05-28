@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace nr.Workflows
+namespace nr.StateMachine
 {
     /// <summary>
-    /// Definizione di un evento che attiva una transizione di stato.
+    /// An event that begin a state transition.
     /// </summary>
-    public interface IWorkflowEvent
+    public interface IMachineEvent
     {
         /// <summary>
-        /// Nome dell'evento.
+        /// Event's name.
         /// </summary>
         string Name { get; set; }
     }

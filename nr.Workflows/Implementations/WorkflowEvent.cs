@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace nr.Workflows
+namespace nr.StateMachine
 {
     /// <summary>
     /// Definizione di un evento che attiva una transizione di stato.
     /// </summary>
-    public class WorkflowEvent : IWorkflowEvent
+    public class WorkflowEvent : IMachineEvent
     {
         /// <summary>
         /// Nome dell'evento.
@@ -30,7 +30,7 @@ namespace nr.Workflows
         /// <param name="obj">Istanza con la quale effettuare il confronto.</param>
         /// <returns>Restituisce un valore booleano che indica se le istanze sono uguali.</returns>
         public override bool Equals(object obj) =>
-            obj is IWorkflowEvent ? GetHashCode() == obj.GetHashCode() : false;
+            obj is IMachineEvent ? GetHashCode() == obj.GetHashCode() : false;
         /// <summary>
         /// Conversione verso stringa.
         /// </summary>
@@ -46,6 +46,6 @@ namespace nr.Workflows
         /// <summary>
         /// Evento di avvio del workflow.
         /// </summary>
-        public static IWorkflowEvent Start { get => new WorkflowEvent() { Name = "evStart" }; }
+        public static IMachineEvent Start { get => new WorkflowEvent() { Name = "evStart" }; }
     }
 }
