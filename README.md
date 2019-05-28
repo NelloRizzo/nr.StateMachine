@@ -1,10 +1,6 @@
 # nr.StateMachine
 
-A state machine implemented in C#.
-
-## Getting Started
-
-The project is birth as example of programming in C#.
+A state machine implemented as sample of programming in C#.
 
 ## Authors
 
