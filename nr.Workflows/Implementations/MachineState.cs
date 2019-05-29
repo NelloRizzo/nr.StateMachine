@@ -12,6 +12,14 @@ namespace nr.StateMachine
     public class MachineState<D> : IState<D>
     {
         /// <summary>
+        /// Fired when entering in the state.
+        /// </summary>
+        public event EventHandler<D> Enter;
+        /// <summary>
+        /// Fired when wxiting in the state.
+        /// </summary>
+        public event EventHandler<D> Exit;
+        /// <summary>
         /// Handled data.
         /// </summary>
         public D Data { get; set; }
@@ -37,11 +45,29 @@ namespace nr.StateMachine
         /// <returns>Returns the new state of the machine.</returns>
         public IState<D> ReceiveEvent(IMachineEvent e)
         {
+            OnEnter(Data);
             var transition = Transitions.FirstOrDefault(t => t.Event.Equals(e) && (t.Guard?.Invoke(Data, e) ?? true));
             if (transition == null) return null;
             transition.Data = Data;
             transition.Action?.Invoke(Data, e);
+            OnExit(Data);
             return transition.To;
+        }
+        /// <summary>
+        /// Fire the event <see cref="Enter"/>.
+        /// </summary>
+        /// <param name="data">Parameters for this event.</param>
+        protected virtual void OnEnter(D data)
+        {
+            Enter?.Invoke(this, data);
+        }
+        /// <summary>
+        /// Fire the event <see cref="Exit"/>.
+        /// </summary>
+        /// <param name="data">Parameters for this event.</param>
+        protected virtual void OnExit(D data)
+        {
+            Exit?.Invoke(this, data);
         }
     }
 }
