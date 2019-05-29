@@ -114,6 +114,9 @@ namespace Tester
                 To = stateDisplay
             });
 
+            stateDisplay.Enter += (s, e) => Console.WriteLine($"Entering in the state {stateDisplay.Name}...");
+            stateDisplay.Exit += (s, e) => Console.WriteLine($"Exiting from the state {stateDisplay.Name}...");
+            
             wf.Data = new Calculator();
             wf.DefaultTransition.To = stateDisplay;
             wf.BroadcastEvent(MachineEvent.Start);
